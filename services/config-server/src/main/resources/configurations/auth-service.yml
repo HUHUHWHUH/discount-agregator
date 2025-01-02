@@ -1,0 +1,21 @@
+server:
+  port: 9898
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/auth_db
+    username: authadmin
+    password: authpassword
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create # validate
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    baseline-on-migrate: true
+    validate-on-migrate: false
+    enabled: true
+    baseline-description: "init"
+    baseline-version: 0
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}

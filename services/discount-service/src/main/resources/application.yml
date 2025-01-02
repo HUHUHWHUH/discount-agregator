@@ -1,0 +1,48 @@
+server:
+  port: 9090
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+  datasource:
+    url: jdbc:postgresql://localhost:5434/discounts_db
+    username: discountsadmin
+    password: discountspass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update # validate
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    baseline-on-migrate: true
+    validate-on-migrate: false
+    enabled: true
+    baseline-description: "init"
+    baseline-version: 0
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+  #  mail:
+  #    host: localhost
+  #    port: 1023
+  #    username: admin
+  #    password: admin
+  #    properties:
+  #      mail:
+  #        smtp:
+  #          trust: "*"
+  #        auth: true
+  #        starttls:
+  #          enabled: true
+  #        connectiontimeout: 5000
+  #        timeout: 3000
+  #        writetimeout: 5000
+  application:
+    name: DISCOUNT-SERVICE
+application:
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
+  file:
+    upload:
+      photos-output-path: ./uploads

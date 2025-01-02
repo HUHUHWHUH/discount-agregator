@@ -1,0 +1,112 @@
+version: '3.8'
+
+services:
+#  student-service:
+#    build:
+#      context: ./student-service
+#    ports:
+#      - "8081:8081"
+#    depends_on:
+#      - eureka-server
+#      - postgres # Указываем зависимость от сервиса PostgreSQL
+#    networks:
+#      - fiji-network
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/fiji_db
+#      SPRING_DATASOURCE_USERNAME: studentadmin
+#      SPRING_DATASOURCE_PASSWORD: studentadminpass
+
+#  partner-service:
+#    build:
+#      context: ./partner-service
+#    ports:
+#      - "8082:8082"
+#    depends_on:
+#      - eureka-server
+#      - postgres-partners # Указываем зависимость от сервиса PostgreSQL для партнеров
+#    networks:
+#      - fiji-network
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5433/fiji_partners_db
+#      SPRING_DATASOURCE_USERNAME: studentadmin
+#      SPRING_DATASOURCE_PASSWORD: studentadminpass
+
+#  offer-service:
+#    build:
+#      context: ./offer-service
+#    ports:
+#      - "8083:8083"
+#    depends_on:
+#      - eureka-server
+#      - postgres-offers # Указываем зависимость от сервиса PostgreSQL для предложений
+#    networks:
+#      - fiji-network
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5434/fiji_offers_db
+#      SPRING_DATASOURCE_USERNAME: studentadmin
+#      SPRING_DATASOURCE_PASSWORD: studentadminpass
+
+  students_db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: students_db # Имя базы данных для студентов
+      POSTGRES_USER: studentadmin # Имя пользователя базы данных
+      POSTGRES_PASSWORD: studentadminpass # Пароль базы данных
+    ports:
+      - "5432:5432"
+    networks:
+      - fiji-network
+    restart: unless-stopped
+
+  auth_db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: auth_db
+      POSTGRES_USER: authadmin
+      POSTGRES_PASSWORD: authpassword
+    ports:
+      - "5433:5432"
+    networks:
+      - fiji-network
+    restart: unless-stopped
+
+  discounts_db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: discounts_db
+      POSTGRES_USER: discountsadmin
+      POSTGRES_PASSWORD: discountspass
+    ports:
+      - "5434:5432"
+    networks:
+      - fiji-network
+    restart: unless-stopped
+
+#  postgres-partners:
+#    image: postgres:latest
+#    environment:
+#      POSTGRES_DB: fiji_partners_db # Имя базы данных для партнеров
+#      POSTGRES_USER: studentadmin
+#      POSTGRES_PASSWORD: studentadminpass
+#    ports:
+#      - "5433:5432"
+#    networks:
+#      - fiji-network
+
+#  postgres-offers:
+#    image: postgres:latest
+#    environment:
+#      POSTGRES_DB: fiji_offers_db # Имя базы данных для предложений
+#      POSTGRES_USER: studentadmin
+#      POSTGRES_PASSWORD: studentadminpass
+#    ports:
+#      - "5434:5432"
+#    networks:
+#      - fiji-network
+
+networks:
+  fiji-network:
+    driver: bridge
+
+volumes:
+  postgres:

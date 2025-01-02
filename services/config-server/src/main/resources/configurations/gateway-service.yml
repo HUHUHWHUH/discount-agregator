@@ -1,0 +1,69 @@
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]': # Здесь вы определяете маршрут для применения CORS
+            allowedOrigins:
+              - "http://localhost:4200"
+            allowedMethods:
+              - "GET"
+              - "POST"
+              - "PUT"
+              - "DELETE"
+            allowedHeaders:
+              - "Authorization"
+              - "Content-Type"
+              - "Accept"
+              - "Origin"
+            allowCredentials: true # Это корректное расположение свойства
+
+#        corsConfigurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods: "*"
+#            allowedHeaders: "*"
+
+      discovery:
+        locator:
+          enabled: true
+
+      routes:
+        - id: student-service
+          uri: lb:http://STUDENT-SERVICE
+          predicates:
+            - Path=/api/students/**
+
+        - id: auth-service
+          uri: lb:http://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+
+        - id: user-service
+          uri: lb:http://USER-SERVICE
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - AuthenticationFilter
+
+        - id: discount-service
+          uri: lb:http://DISCOUNT-SERVICE
+          predicates:
+            - Path=/discounts/**
+          filters:
+            - AuthenticationFilter
+        - id: qr-service
+          uri: lb:http://QR-SERVICE
+          predicates:
+            - Path=/api/qr/**
+          filters:
+            - AuthenticationFilter
+
+logging:
+  level:
+    com.fiji.gateaway.filter.AuthenticationFilter: INFO
+
+server:
+  port: 8222
