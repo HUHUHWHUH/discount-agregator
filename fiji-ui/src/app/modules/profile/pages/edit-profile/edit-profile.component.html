@@ -1,0 +1,103 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+  <div class="container-fluid">
+    <!-- Логотип -->
+    <a class="navbar-brand fs-4" href="javascript:void(0)">FIJY</a>
+  </div>
+</nav>
+<div class="container mt-5">
+  <!-- Заголовок -->
+  <div class="header d-flex justify-content-between align-items-center">
+    <div class="user-info">
+      <h1>{{ user?.lastname }} {{ user?.firstname }}</h1>
+    </div>
+    <button class="purple-button" (click)="saveProfile()">Сохранить изменения</button>
+    <button class="purple-button" (click)="backToProfile()">Назад</button>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <!-- Форма для редактирования личных данных -->
+  <div class="section mb-4">
+    <h2 class="mb-4">Личные данные</h2>
+    <div class="info">
+      <div class="form-group mb-3">
+        <label for="firstname">Имя</label>
+        <input
+          [(ngModel)]="user.firstname"
+          type="email"
+          id="firstname"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="lastname">Фамилия</label>
+        <input
+          type="text"
+          id="lastname"
+          class="form-control"
+          [(ngModel)]="user.lastname"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="dateOfBirth">Дата рождения</label>
+        <input
+          type="date"
+          id="dateOfBirth"
+          class="form-control"
+          [(ngModel)]="user.dateOfBirth"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Контактная информация -->
+  <div class="section">
+    <h2>Контакты</h2>
+    <div class="contacts">
+      <div class="form-group mb-3">
+        <label for="email">Почта</label>
+        <div class="input-group">
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            [(ngModel)]="user.email"
+          />
+          <div class="input-group-text bg-success text-white">
+            Подтверждена
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  .user-info h1 {
+    font-size: 1.8rem;
+    margin: 0;
+  }
+
+  .section {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+
+  .contacts .input-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .input-group-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+</style>

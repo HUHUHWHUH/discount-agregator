@@ -1,0 +1,43 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+<div class="login-wrapper">
+  <div class="container-fluid card login-container">
+    <h3 class="text-center">Регистрация</h3>
+    <hr>
+    <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">
+      <p *ngFor="let msg of errorMsg">{{ msg }}</p>
+    </div>
+    <div class="mb-3">
+      <label for="firstname" class="form-label">Имя</label>
+      <input [(ngModel)]="registerRequest.firstname" type="text" class="form-control" id="firstname" placeholder="Имя">
+    </div>
+    <div class="mb-3">
+      <label for="lastname" class="form-label">Фамилия</label>
+      <input [(ngModel)]="registerRequest.lastname" type="text" class="form-control" id="lastname" placeholder="Фамилия">
+    </div>
+    <div class="mb-3">
+      <label for="login" class="form-label">Электронная почта</label>
+      <input [(ngModel)]="registerRequest.email" type="email" class="form-control" id="login" placeholder="name@example.com">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Пароль</label>
+      <input [(ngModel)]="registerRequest.password" type="password" class="form-control" id="password" placeholder="Пароль">
+    </div>
+    <div class="d-flex justify-content-between mb-3 flex-column flex-sm-row">
+      <button (click)="register()" type="button" class="custom-register-button btn-outline-custom-pink button-custom-border-radius mb-2 mb-sm-0">
+        <em class="custom-font">&nbsp;Зарегистрироваться</em>
+      </button>
+      <style>
+        .btn-link {
+          text-decoration: none;
+        }
+      </style>
+      <div>
+        Уже есть аккаунт?&nbsp;
+        <button (click)="login()" type="button" class="btn btn-link">
+          <span class = "custom-pink-font">Войти</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

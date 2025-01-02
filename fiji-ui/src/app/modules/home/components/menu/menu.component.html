@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+  <div class="container-fluid">
+    <!-- Логотип -->
+    <a class="navbar-brand fs-4" href="javascript:void(0)">FIJY</a>
+
+    <ng-container class = "ms-3" *ngIf="isUserAuthenticated; else notAuthenticated">
+      <span>Добро пожаловать, {{ userName }}</span>
+      <button class="button-custom-border-radius btn-outline-custom-pink success ms-3" type="button" (click)="profile()">Профиль</button>
+      <button class="button-custom-border-radius btn-outline-custom-pink success ms-3" type="button" (click)="logout()">Выйти</button>
+    </ng-container>
+
+    <ng-template #notAuthenticated>
+      <button class="btn btn-outline-success custom-pink ms-3" type="button" (click)="login()">Авторизоваться</button>
+    </ng-template>
+
+    <!-- Кнопка для мобильного меню -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Ссылки меню -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item ms-4">
+          <a class="nav-link fs-6" aria-current="page" routerLink="/home">
+<!--            <i class="fas fa-home-alt"></i>&nbsp;Home-->
+            <i></i>&nbsp;Главная
+          </a>
+        </li>
+        <li class="nav-item ms-4">
+          <a class="nav-link" routerLink="partnerships">
+<!--            <i class="fa-solid fa-handshake-alt"></i>&nbsp;Partnership-->
+            <i></i>&nbsp;Для партнеров
+          </a>
+        </li>
+
+        <li class="nav-item ms-4">
+          <a class="nav-link" routerLink="discounts">
+            <!--            <i class="fas fa-tags"></i>&nbsp;Discounts-->
+            <i></i>&nbsp;Скидки и предложения
+          </a>
+        </li>
+
+      </ul>
+
+      <!-- Поле поиска и кнопки -->
+
+        <ng-container class = "ms-3" *ngIf="isUserAuthenticated">
+          <form class="d-flex gap-2 align-items-center" role="search">
+            <input class="form-control" type="search" placeholder="Найти скидки" aria-label="Search">
+            <button class="btn btn-outline-custom-pink ms-3" type="submit"><i class="fas fa-search"></i></button>
+          </form>
+        </ng-container>
+
+        <!--        <button class="btn btn-link" type="button" (click)="logout()"><i class="fas fa-door-open">Logout</i></button>-->
+    </div>
+  </div>
+</nav>
+
+
+<!--<div class="m-4">-->
+<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <div class="container-fluid">-->
+<!--      <a href="#" class="navbar-brand">Brand</a>-->
+<!--      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--      </button>-->
+<!--      <div class="collapse navbar-collapse" id="navbarCollapse">-->
+<!--        <div class="navbar-nav">-->
+<!--          <a href="#" class="nav-item nav-link active">Home</a>-->
+<!--          <a href="#" class="nav-item nav-link">Profile</a>-->
+<!--          <a href="#" class="nav-item nav-link">Messages</a>-->
+<!--          <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a>-->
+
+<!--        </div>-->
+<!--        <div class="navbar-nav ms-auto">-->
+<!--          <a href="#" class="nav-item nav-link">Login</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </nav>-->
+<!--</div>-->
+

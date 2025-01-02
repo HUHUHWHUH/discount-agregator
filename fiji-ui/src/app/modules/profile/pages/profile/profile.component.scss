@@ -1,0 +1,156 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.purple-button {
+  background-color: #f5f0ff; /* Светлый фиолетовый фон */
+  color: #9638ff; /* Тёмно-фиолетовый текст */
+  border: 2px solid #9638ff; /* Тёмно-фиолетовая рамка */
+  border-radius: 8px; /* Закруглённые углы */
+  padding: 10px 20px; /* Отступы внутри кнопки */
+  font-family: Arial, sans-serif; /* Шрифт */
+  font-size: 16px; /* Размер шрифта */
+  font-weight: bold; /* Жирное начертание */
+  cursor: pointer; /* Изменение курсора на указатель */
+  text-transform: uppercase; /* Заглавные буквы */
+  transition: all 0.3s ease; /* Плавное изменение при наведении */
+}
+
+.purple-button:hover {
+  background-color: #e1bee7; /* Светло-фиолетовый фон при наведении */
+  border-color: #6a1b9a; /* Тёмно-фиолетовая рамка при наведении */
+  color: #6a1b9a; /* Тёмно-фиолетовый текст при наведении */
+}
+
+.header .profile-picture {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ffeeba;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #ffc107;
+}
+
+.header .user-info {
+  margin-left: 20px;
+}
+
+.header .user-info h1 {
+  font-size: 24px;
+  color: #343a40;
+}
+
+.header .user-info .user-id {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.header .edit-button {
+  background-color: #eaf4ff;
+  border: 1px solid #007bff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #007bff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  font-size: 18px;
+  color: #495057;
+  margin-bottom: 10px;
+}
+
+.section .info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.section .info-item {
+  flex: 1 1 calc(50% - 10px);
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #495057;
+}
+
+.section .info-item span {
+  font-weight: bold;
+}
+
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.contact-card {
+  flex: 1 1 calc(50% - 10px);
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  gap: 10px;
+}
+
+.contact-card i {
+  font-size: 24px;
+  color: #6c757d;
+}
+
+.contact-card span {
+  font-size: 14px;
+  color: #495057;
+}
+
+.contact-card .status {
+  font-size: 12px;
+  color: #28a745;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .header .user-info {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .section .info-item {
+    flex: 1 1 100%;
+  }
+
+  .contacts {
+    flex-direction: column;
+  }
+
+  .contact-card {
+    flex: 1 1 100%;
+  }
+}

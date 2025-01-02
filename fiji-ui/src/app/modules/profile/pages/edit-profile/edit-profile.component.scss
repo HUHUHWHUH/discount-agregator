@@ -1,0 +1,16 @@
+.purple-button {
+  background-color: #9638ff; /* Фиолетовый фон */
+  color: #ffffff; /* Белый текст */
+  border: none; /* Убираем границу */
+  border-radius: 8px; /* Закруглённые углы */
+  padding: 10px 20px; /* Внутренние отступы */
+  font-family: Arial, sans-serif; /* Шрифт */
+  font-size: 16px; /* Размер шрифта */
+  font-weight: normal; /* Обычное начертание */
+  cursor: pointer; /* Курсор при наведении */
+  transition: background-color 0.3s ease; /* Плавный переход при наведении */
+}
+
+.purple-button:hover {
+  background-color: #6a1b9a; /* Более тёмный фиолетовый при наведении */
+}

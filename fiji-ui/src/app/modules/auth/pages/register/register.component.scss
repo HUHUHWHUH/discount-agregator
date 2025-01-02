@@ -1,0 +1,41 @@
+                                                                                           /* Общие стили для формы */
+.login-container {
+  width: 80%; /* Ширина формы 80% экрана */
+  max-width: 600px; /* Максимальная ширина на больших экранах */
+  margin: auto; /* Центровка по горизонтали */
+  padding: 40px; /* Внутренние отступы */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Центрирование формы */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Центрирование по вертикали */
+  padding: 20px; /* Отступы для мобильных устройств */
+  background-color: #f8f9fa; /* Фоновый цвет страницы */
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 20px; /* Уменьшенные отступы */
+    width: 90%; /* Ширина формы на маленьких экранах */
+  }
+}
+
+.custom-font {
+  font-family: Roboto, Arial, sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.custom-pink-font {
+  font-family: Roboto, Arial, sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  color: #9638ff;
+}

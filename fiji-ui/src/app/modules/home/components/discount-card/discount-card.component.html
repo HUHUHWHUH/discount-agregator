@@ -1,0 +1,36 @@
+<!--<div-->
+<!--class = "card"-->
+<!--style = "width: 20rem">-->
+<!--  <img height = 200 [src]="discountCover" class = "card-img-top" alt = "...">-->
+<!--  <div class = "card-body overflow-scroll">-->
+<!--    <h5 class = "card-title fs6 text-nowrap fw-bold mb-1"><i class = "fa-solid"></i>&nbsp; {{discount.name}}</h5>-->
+<!--    <h5 class = "card-subtitle fs6 text-secondary mb-2"><i class = "fa-solid"></i>&nbsp; {{discount.company}}</h5>-->
+<!--    <hr>-->
+<!--    <p class = "card-text">{{discount.description}}</p>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="card shadow-sm" style="width: 18rem;">
+  <!-- Изображение скидки -->
+  <img height = 200 width = 75 [src]="discountCover" class="card-img-top" alt="Discount Image">
+
+  <!-- Контент карточки -->
+  <div class="card-body">
+    <h5 class="card-title">{{discount.name}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{discount.company}}</h6>
+    <p class="card-text">{{discount.description}}</p>
+<!--    <a href="#" class="btn btn-primary">Получить скидку</a>-->
+    <button class="more-button button-custom-border-radius custom-pink" type="button">Подробнее</button>
+  </div>
+</div>
+
+
+<!--<div class="card shadow-sm" style="width: 18rem; background-image: url('assets/images/covers/no_image.png'); background-size: cover; height: 250px;">-->
+<!--  <div class="card-body d-flex flex-column justify-content-end">-->
+<!--    <h5 class="card-title text-black" >Скидка 20% на кофе</h5>-->
+<!--    <h6 class="card-subtitle mb-2 text-white">Кофейня "Brew"</h6>-->
+<!--    <p class="card-text text-white">Получите скидку 20% на все напитки в кофейне!</p>-->
+<!--    <a href="#" class="btn btn-light">Получить скидку</a>-->
+<!--  </div>-->
+<!--</div>-->
+

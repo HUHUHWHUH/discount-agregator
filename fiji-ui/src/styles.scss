@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+.login-container {
+  width: 800px !important;
+  margin-top: 15%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+.custom-pink {
+  background-color: #b36eff;  /* Розовый цвет */
+  color: white;  /* Белый цвет текста */
+  border: none;  /* Без рамки */
+}
+
+.custom-pink:hover {
+  background-color: #9638ff;  /* Более темный оттенок при наведении */
+  color: white;
+}
+
+.custom-small-font {
+  font-size: 12px; /* Уменьшенный размер шрифта */
+}
+
+.btn-outline-custom-pink {
+  border-color: #b36eff; /* Розовый цвет */
+  color: #b36eff;
+  background: white;
+  height: 2.3rem;
+}
+
+.btn-outline-custom-pink:hover {
+  background-color: #9638ff;
+  color: white; /* Белый текст при наведении */
+  border-color: #9638ff;
+}
+
+.arrow-outline-custom-pink {
+  border-color: #b36eff; /* Розовый цвет */
+  color: #b36eff;
+}
+
+.arrow-outline-custom-pink:hover {
+  background-color: #9638ff;
+  color: white; /* Белый текст при наведении */
+  border-color: #9638ff;
+}
+
+.custom-enter-button {
+  font-family: 'Arial', sans-serif; /* Укажите нужный шрифт */
+  font-size: 16px; /* Размер шрифта */
+  font-weight: bold; /* Жирность */
+  font-style: normal;
+}
+.custom-register-button {
+  font-size: 16px; /* Размер шрифта */
+  font-weight: bold; /* Жирность */
+  font-style: normal;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  background: #9638ff;
+}
+
+.custom-pink-bg-button {
+  font-style: normal;
+  color: white;
+  background: #9638ff;
+}
+.custom-button-size {
+  width: 20pc;
+  height: 3pc;
+}
+
+.papyrus-font {
+  font-family: 'Papyrus', sans-serif;
+}
+
+.button-custom-border-radius {
+  border-radius: 8px;
+}

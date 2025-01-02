@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+  <div class="container-fluid">
+    <!-- Логотип -->
+    <a class="navbar-brand fs-4" href="javascript:void(0)">FIJY</a>
+  </div>
+</nav>
+<div class = "center-component mt-5">
+  <button class="btn-outline-custom-pink font custom-button-size custom-pink-bg-button button-custom-border-radius" (click)="backToProfile()">Назад к профилю</button>
+</div>
+<div class="center-component container mt-5">
+  <img *ngIf="qrCodeUrl" [src]="qrCodeUrl" alt="QR Code" />
+  <div *ngIf="!qrCodeUrl">Загрузка QR-кода...</div>
+</div>
