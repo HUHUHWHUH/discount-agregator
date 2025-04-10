@@ -4,4 +4,6 @@ export interface UserUpdateRequest {
   dateOfBirth?: string;
   email?: string;
   password?: string;
+  university?: string;
+  phoneNumber?: string;
 }

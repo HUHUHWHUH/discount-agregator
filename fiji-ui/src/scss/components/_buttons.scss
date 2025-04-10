@@ -1,0 +1,75 @@
+@import '../abstracts/variables';
+
+// Primary Purple Button
+.custom-pink {
+  background-color: $primary-green;
+  color: $white;
+  border: none;
+  
+  &:hover {
+    background-color: $primary-green-dark;
+    color: $white;
+  }
+}
+
+// Outline Purple Button
+.btn-outline-custom-pink {
+  border-color: $primary-green;
+  color: $primary-green;
+  background: $white;
+  height: $button-height-sm;
+  
+  &:hover {
+    background-color: $primary-green-dark;
+    color: $white;
+    border-color: $primary-green-dark;
+  }
+}
+
+// Arrow Outline Button
+.arrow-outline-custom-pink {
+  border-color: $primary-green;
+  color: $primary-green;
+  
+  &:hover {
+    background-color: $primary-green-dark;
+    color: $white;
+    border-color: $primary-green-dark;
+  }
+}
+
+// Custom Enter Button
+.custom-enter-button {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: bold;
+  font-style: normal;
+}
+
+// Custom Register Button
+.custom-register-button {
+  font-size: $font-size-base;
+  font-weight: bold;
+  font-style: normal;
+  color: $white;
+  font-family: $font-family-base;
+  background: $primary-green-dark;
+}
+
+// Custom Pink Background Button
+.custom-pink-bg-button {
+  font-style: normal;
+  color: $white;
+  background: $primary-green-dark;
+}
+
+// Button Size Utility
+.custom-button-size {
+  width: $button-width;
+  height: $button-height;
+}
+
+// Button Border Radius
+.button-custom-border-radius {
+  border-radius: $border-radius;
+} 

@@ -1,35 +1,124 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
-  <div class="container-fluid">
-    <!-- Логотип -->
-    <a class="navbar-brand fs-4" href="javascript:void(0)">FIJY</a>
-  </div>
-</nav>
-
-<div class="container mt-5">
-  <div class="header">
-    <div class="user-info">
-      <h1>{{ user?.lastname }} {{ user?.firstname }}</h1>
+<div class="profile-page">
+  <!-- Navigation Header -->
+  <nav class="nav-header">
+    <div class="container">
+      <div class="nav-content">
+        <a class="nav-brand" routerLink="/home">FIJY</a>
+        <button class="btn btn-link back-button" routerLink="/home">
+          <i class="fas fa-arrow-left"></i> На главную
+        </button>
+      </div>
     </div>
-    <button class="purple-button" (click) = editProfile()>Редактировать</button>
-    <button class="purple-button" (click) = showQR()>Показать QR-код</button>
-  </div>
-</div>
+  </nav>
 
-<div class = "container mt-5">
-  <div class="section">
-    <h2 class = "mb-4">Личные данные</h2>
-    <div class="info">
-      <div class="info-item"><span>Дата рождения: </span><br> {{ user?.dateOfBirth }}</div>
+  <!-- Profile Card -->
+  <div class="container">
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <div class="avatar-placeholder">
+            <!-- Use first letters of first and last name as initials -->
+            {{ user?.firstname?.charAt(0) || '' }}{{ user?.lastname?.charAt(0) || '' }}
+          </div>
+        </div>
+        <div class="profile-info">
+          <h1 class="profile-name">{{ user?.lastname }} {{ user?.firstname }}</h1>
+          <div class="profile-status">Подтвержденный аккаунт</div>
+        </div>
+        <div class="profile-actions">
+          <button class="btn action-button edit-button" (click)="editProfile()">
+            <i class="fas fa-edit"></i> Редактировать
+          </button>
+          <button class="btn action-button qr-button" (click)="showQR()">
+            <i class="fas fa-qrcode"></i> QR-код
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="section">
-    <h2>Контакты</h2>
-    <div class="contacts">
-      <div class="contact-card">
-        <i class = "bi bi-envelope"></i>
-        <div>
-          <span>Почта: {{ user?.email }}</span>
-          <div class="status">Подтверждена</div>
+
+    <!-- Profile Sections -->
+    <div class="profile-sections">
+      <!-- Personal Information Section -->
+      <div class="profile-section">
+        <div class="section-header">
+          <i class="fas fa-user-circle section-icon"></i>
+          <h2 class="section-title">Личные данные</h2>
+        </div>
+        <div class="section-content">
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">Имя</span>
+              <span class="info-value">{{ user?.firstname || '—' }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Фамилия</span>
+              <span class="info-value">{{ user?.lastname || '—' }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Дата рождения</span>
+              <span class="info-value">{{ user?.dateOfBirth | date:'dd.MM.yyyy' || '—' }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Университет</span>
+              <span class="info-value">{{ user?.university || '—' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Information Section -->
+      <div class="profile-section">
+        <div class="section-header">
+          <i class="fas fa-address-card section-icon"></i>
+          <h2 class="section-title">Контактная информация</h2>
+        </div>
+        <div class="section-content">
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-details">
+                <span class="contact-label">Email</span>
+                <span class="contact-value">{{ user?.email || '—' }}</span>
+                <span class="contact-badge verified">Подтвержден</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-details">
+                <span class="contact-label">Телефон</span>
+                <span class="contact-value">{{ user?.phoneNumber || '—' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Information Section -->
+      <div class="profile-section">
+        <div class="section-header">
+          <i class="fas fa-id-card section-icon"></i>
+          <h2 class="section-title">Студенческая карта</h2>
+        </div>
+        <div class="section-content">
+          <div class="card-preview">
+            <div class="student-card">
+              <div class="card-logo">FIJY</div>
+              <div class="card-user">
+                <div class="card-username">{{ user?.lastname }} {{ user?.firstname }}</div>
+                <div class="card-email">{{ user?.email }}</div>
+              </div>
+              <div class="card-footer">
+                <button class="btn view-card-button" (click)="showQR()">
+                  <i class="fas fa-qrcode"></i> Показать QR-код
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

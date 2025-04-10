@@ -18,7 +18,15 @@ import {AuthenticationService} from '../../../../services/auth/services/authenti
 })
 export class RegisterComponent {
 
-  registerRequest: RegistrationRequest = {email: '', firstname: '', lastname: '', password: ''};
+  registerRequest: RegistrationRequest = {
+    email: '', 
+    firstname: '', 
+    lastname: '', 
+    password: '',
+    dateOfBirth: '',
+    university: '',
+    phoneNumber: ''
+  };
   errorMsg: Array<string> = [];
 
   constructor(

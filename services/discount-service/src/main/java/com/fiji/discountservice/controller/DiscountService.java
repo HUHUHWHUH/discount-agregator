@@ -105,4 +105,29 @@ public class DiscountService {
         discount.setDiscountCover(discountCover);
         discountRepository.save(discount);
     }
+
+    public PageResponse<DiscountResponse> searchDiscountsByName(String name, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "name"));
+        Page<Discount> discountPage;
+        
+        if (name != null && !name.trim().isEmpty()) {
+            discountPage = discountRepository.findByNameContainingIgnoreCase(name.trim(), pageable);
+        } else {
+            discountPage = discountRepository.findByActiveTrue(pageable);
+        }
+
+        List<DiscountResponse> discountResponses = discountPage.getContent().stream()
+                .map(discountMapper::convertToResponse)
+                .collect(Collectors.toList());
+
+        return new PageResponse<>(
+                discountResponses,
+                discountPage.getNumber(),
+                discountPage.getSize(),
+                discountPage.getTotalElements(),
+                discountPage.getTotalPages(),
+                discountPage.isFirst(),
+                discountPage.isLast()
+        );
+    }
 }

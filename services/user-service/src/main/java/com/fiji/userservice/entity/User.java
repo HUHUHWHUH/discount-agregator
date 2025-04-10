@@ -51,6 +51,8 @@ public class User {
     private String password;
     private boolean accountLocked;
     private boolean enabled;
+    private String university;
+    private String phoneNumber;
 
     public String getFullName() {
         return firstname + " " + lastname;

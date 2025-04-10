@@ -1,0 +1,168 @@
+<div class="discounts-page">
+  <!-- Header -->
+  <div class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="back-button">
+          <button class="btn custom-white" (click)="navigateToMainPage()">
+            <i class="fas fa-arrow-left"></i> На главную
+          </button>
+        </div>
+        <div class="header-text">
+          <h1 class="page-title">Скидки для студентов FIJY</h1>
+          <p class="page-subtitle">Используйте вашу карту FIJY для получения эксклюзивных скидок</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search and Filter Section -->
+  <div class="search-filter-section">
+    <div class="container">
+      <div class="search-filter-container">
+        <div class="search-container">
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="fas fa-search"></i>
+            </span>
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Search discounts..." 
+              [(ngModel)]="searchQuery"
+            >
+            <button 
+              class="btn btn-primary" 
+              (click)="onSearch()"
+              [disabled]="isLoadingDiscounts"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+        
+        <div class="filter-container">
+          <button class="filter-btn" (click)="toggleFilterDropdown()">
+            <i class="fas fa-filter"></i>
+            Filters
+            <span class="filter-count" *ngIf="activeFilters.length > 0">
+              {{ activeFilters.length }}
+            </span>
+          </button>
+          
+          <div class="filter-dropdown" *ngIf="showFilterDropdown">
+            <div class="filter-options">
+              <div class="filter-option" *ngFor="let category of categories">
+                <label class="form-check">
+                  <input 
+                    type="checkbox" 
+                    class="form-check-input"
+                    [checked]="activeFilters.includes(category)"
+                    (change)="toggleFilter(category)"
+                  >
+                  <span class="form-check-label">{{ category }}</span>
+                </label>
+              </div>
+            </div>
+            <div class="filter-actions">
+              <button class="btn btn-link" (click)="clearFilters()">Clear All</button>
+              <button class="btn btn-primary" (click)="toggleFilterDropdown()">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="container">
+      <!-- Unauthorized State -->
+      <div class="unauthorized-state" *ngIf="!isAuthorized">
+        <div class="auth-prompt">
+          <div class="auth-prompt-content">
+            <i class="fas fa-lock auth-icon"></i>
+            <h2>Требуется авторизация</h2>
+            <p>Для просмотра доступных скидок необходимо авторизоваться в системе</p>
+            <button class="btn custom-pink" (click)="navigateToLogin()">
+              Войти в систему
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Authorized State -->
+      <div class="authorized-state" *ngIf="isAuthorized">
+        <!-- Loading State -->
+        <div class="loading-state" *ngIf="isLoadingDiscounts">
+          <div class="spinner-container">
+            <i class="fas fa-circle-notch fa-spin"></i>
+            <p>Загрузка скидок...</p>
+          </div>
+        </div>
+
+        <!-- No Discounts State -->
+        <div class="no-discounts" *ngIf="!isLoadingDiscounts && discounts.length === 0">
+          <div class="no-discounts-message">
+            <i class="fas fa-info-circle"></i>
+            <p>В данный момент нет доступных скидок</p>
+          </div>
+        </div>
+
+        <!-- Error State -->
+        <div class="error-state" *ngIf="error && !isLoadingDiscounts">
+          <div class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>{{ error }}</p>
+            <button class="btn custom-pink" (click)="retryLoad()">
+              Попробовать снова
+            </button>
+          </div>
+        </div>
+
+        <!-- Discounts Grid -->
+        <div class="discounts-grid" *ngIf="!isLoadingDiscounts && !error && filteredDiscounts.length > 0">
+          <div class="discount-cards">
+            <app-discount-card *ngFor="let discount of filteredDiscounts" [discount]="discount"></app-discount-card>
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination-container" *ngIf="totalPages > 1">
+            <nav aria-label="Pagination">
+              <ul class="pagination justify-content-center">
+                <li class="page-item" [class.disabled]="isFirstPage()">
+                  <a class="page-link" href="javascript:void(0)" (click)="goToFirstPage()" aria-label="First">
+                    <i class="fas fa-angles-left"></i>
+                  </a>
+                </li>
+                <li class="page-item" [class.disabled]="isFirstPage()">
+                  <a class="page-link" href="javascript:void(0)" (click)="goToPreviousPage()" aria-label="Previous">
+                    <i class="fas fa-angle-left"></i>
+                  </a>
+                </li>
+                
+                <li class="page-item" 
+                    *ngFor="let page of [].constructor(totalPages); let i = index"
+                    [class.active]="currentPage === i">
+                  <a class="page-link" href="javascript:void(0)" (click)="goToPage(i)">
+                    {{ i + 1 }}
+                  </a>
+                </li>
+                
+                <li class="page-item" [class.disabled]="isLastPage()">
+                  <a class="page-link" href="javascript:void(0)" (click)="goToNextPage()" aria-label="Next">
+                    <i class="fas fa-angle-right"></i>
+                  </a>
+                </li>
+                <li class="page-item" [class.disabled]="isLastPage()">
+                  <a class="page-link" href="javascript:void(0)" (click)="goToLastPage()" aria-label="Last">
+                    <i class="fas fa-angles-right"></i>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

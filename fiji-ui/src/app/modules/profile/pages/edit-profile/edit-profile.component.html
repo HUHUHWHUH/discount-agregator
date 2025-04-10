@@ -1,74 +1,187 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
-  <div class="container-fluid">
-    <!-- Логотип -->
-    <a class="navbar-brand fs-4" href="javascript:void(0)">FIJY</a>
-  </div>
-</nav>
-<div class="container mt-5">
-  <!-- Заголовок -->
-  <div class="header d-flex justify-content-between align-items-center">
-    <div class="user-info">
-      <h1>{{ user?.lastname }} {{ user?.firstname }}</h1>
+<div class="profile-page">
+  <!-- Navigation header -->
+  <div class="nav-header">
+    <div class="nav-content">
+      <a routerLink="/profile" class="nav-back">
+        <i class="fas fa-arrow-left"></i> Назад к профилю
+      </a>
     </div>
-    <button class="purple-button" (click)="saveProfile()">Сохранить изменения</button>
-    <button class="purple-button" (click)="backToProfile()">Назад</button>
+  </div>
+
+  <!-- Edit Profile Card -->
+  <div class="edit-card">
+    <div class="card-header">
+      <h2>Редактировать профиль</h2>
+      <div class="header-actions">
+        <button class="save-btn" (click)="saveProfile()">Сохранить изменения</button>
+        <button class="cancel-btn" (click)="backToProfile()">Отмена</button>
   </div>
 </div>
 
-<div class="container mt-5">
-  <!-- Форма для редактирования личных данных -->
-  <div class="section mb-4">
-    <h2 class="mb-4">Личные данные</h2>
-    <div class="info">
-      <div class="form-group mb-3">
-        <label for="firstname">Имя</label>
-        <input
-          [(ngModel)]="user.firstname"
-          type="email"
-          id="firstname"
-          class="form-control"
-        />
+    <!-- Personal Information Section -->
+    <div class="section">
+      <div class="section-header">
+        <i class="fas fa-user"></i>
+        <h3>Личная информация</h3>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="section-content">
+        <div class="form-group">
+          <label for="firstname">Имя</label>
+          <input type="text" id="firstname" [(ngModel)]="user.firstname" placeholder="Ваше имя">
+        </div>
+        
+        <div class="form-group">
         <label for="lastname">Фамилия</label>
-        <input
-          type="text"
-          id="lastname"
-          class="form-control"
-          [(ngModel)]="user.lastname"
-        />
+          <input type="text" id="lastname" [(ngModel)]="user.lastname" placeholder="Ваша фамилия">
+        </div>
+        
+        <div class="form-group">
+          <label for="dateOfBirth">Дата рождения</label>
+          <input type="date" id="dateOfBirth" [(ngModel)]="user.dateOfBirth">
+        </div>
+        
+        <div class="form-group">
+          <label for="university">Университет</label>
+          <input type="text" id="university" [(ngModel)]="user.university" placeholder="Ваш университет">
+        </div>
       </div>
-      <div class="form-group mb-3">
-        <label for="dateOfBirth">Дата рождения</label>
-        <input
-          type="date"
-          id="dateOfBirth"
-          class="form-control"
-          [(ngModel)]="user.dateOfBirth"
-        />
+    </div>
+
+    <!-- Contact Information Section -->
+    <div class="section">
+      <div class="section-header">
+        <i class="fas fa-address-card"></i>
+        <h3>Контактная информация</h3>
+      </div>
+      
+      <div class="section-content">
+        <div class="form-group">
+          <label for="email">Электронная почта</label>
+          <input type="email" id="email" [(ngModel)]="user.email" placeholder="Ваш email">
+          <div class="email-verified">
+            <i class="fas fa-check-circle"></i> Подтверждено
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="phoneNumber">Номер телефона</label>
+          <input type="tel" id="phoneNumber" [(ngModel)]="user.phoneNumber" placeholder="Ваш номер телефона">
+        </div>
+      </div>
+    </div>
+
+    <!-- Security Section -->
+    <div class="section security-section">
+      <div class="section-header">
+        <i class="fas fa-lock"></i>
+        <h3>Безопасность</h3>
+      </div>
+      
+      <div class="password-form">
+        <p class="password-info">Измените пароль, чтобы обеспечить безопасность вашего аккаунта. Ваш пароль должен содержать не менее 8 символов.</p>
+        
+        <div class="form-group">
+          <label for="currentPassword">Текущий пароль</label>
+          <div class="password-input-container">
+            <input 
+              [type]="showCurrentPassword ? 'text' : 'password'" 
+              id="currentPassword" 
+              [(ngModel)]="currentPassword" 
+              placeholder="Введите текущий пароль"
+              class="password-input"
+            >
+            <button type="button" class="toggle-password" (click)="showCurrentPassword = !showCurrentPassword">
+              <i class="fas" [ngClass]="showCurrentPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="newPassword">Новый пароль</label>
+          <div class="password-input-container">
+            <input 
+              [type]="showNewPassword ? 'text' : 'password'" 
+              id="newPassword" 
+              [(ngModel)]="newPassword" 
+              placeholder="Введите новый пароль"
+              class="password-input"
+              (input)="checkPasswordStrength()"
+            >
+            <button type="button" class="toggle-password" (click)="showNewPassword = !showNewPassword">
+              <i class="fas" [ngClass]="showNewPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
+          
+          <!-- Password strength indicator -->
+          <div class="password-strength" *ngIf="newPassword">
+            <div class="strength-meter">
+              <div class="strength-bar" [ngClass]="passwordStrengthClass" [style.width.%]="passwordStrengthPercent"></div>
+            </div>
+            <span class="strength-text" [ngClass]="passwordStrengthClass">{{passwordStrengthText}}</span>
+          </div>
+          
+          <!-- Password requirements -->
+          <div class="password-requirements" *ngIf="newPassword">
+            <div class="requirement" [ngClass]="{'met': passwordLength}">
+              <i class="fas" [ngClass]="passwordLength ? 'fa-check-circle' : 'fa-times-circle'"></i>
+              Не менее 8 символов
+            </div>
+            <div class="requirement" [ngClass]="{'met': passwordHasUpper}">
+              <i class="fas" [ngClass]="passwordHasUpper ? 'fa-check-circle' : 'fa-times-circle'"></i>
+              Минимум 1 заглавная буква
+            </div>
+            <div class="requirement" [ngClass]="{'met': passwordHasNumber}">
+              <i class="fas" [ngClass]="passwordHasNumber ? 'fa-check-circle' : 'fa-times-circle'"></i>
+              Минимум 1 цифра
       </div>
     </div>
   </div>
 
-  <!-- Контактная информация -->
-  <div class="section">
-    <h2>Контакты</h2>
-    <div class="contacts">
-      <div class="form-group mb-3">
-        <label for="email">Почта</label>
-        <div class="input-group">
+        <div class="form-group">
+          <label for="confirmPassword">Подтвердите новый пароль</label>
+          <div class="password-input-container">
           <input
-            type="email"
-            id="email"
-            class="form-control"
-            [(ngModel)]="user.email"
-          />
-          <div class="input-group-text bg-success text-white">
-            Подтверждена
+              [type]="showConfirmPassword ? 'text' : 'password'" 
+              id="confirmPassword" 
+              [(ngModel)]="confirmPassword" 
+              placeholder="Подтвердите новый пароль"
+              class="password-input"
+            >
+            <button type="button" class="toggle-password" (click)="showConfirmPassword = !showConfirmPassword">
+              <i class="fas" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
+          
+          <!-- Password match indicator -->
+          <div class="password-match" *ngIf="newPassword && confirmPassword">
+            <div *ngIf="newPassword === confirmPassword; else passwordMismatch" class="match success">
+              <i class="fas fa-check-circle"></i> Пароли совпадают
+            </div>
+            <ng-template #passwordMismatch>
+              <div class="match error">
+                <i class="fas fa-times-circle"></i> Пароли не совпадают
+              </div>
+            </ng-template>
           </div>
         </div>
+        
+        <div class="form-group password-actions">
+          <button class="reset-password-btn" (click)="resetPasswordFields()">
+            Сбросить поля
+          </button>
+          <button class="change-password-btn" 
+                  [disabled]="!currentPassword || !newPassword || !confirmPassword || newPassword !== confirmPassword"
+                  (click)="changePasswordOnly()">
+            Изменить пароль
+          </button>
+        </div>
       </div>
+    </div>
+
+    <!-- Form Footer -->
+    <div class="form-footer">
+      <button (click)="saveProfile()">Сохранить изменения</button>
     </div>
   </div>
 </div>

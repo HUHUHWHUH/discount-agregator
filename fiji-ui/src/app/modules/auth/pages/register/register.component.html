@@ -1,43 +1,137 @@
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="javascript:void(0)">
+      <span class="logo-text">FIJI</span>
+    </a>
+  </div>
+</nav>
 
 <div class="login-wrapper">
   <div class="container-fluid card login-container">
-    <h3 class="text-center">Регистрация</h3>
-    <hr>
+    <h3 class="text-center">Создать аккаунт</h3>
+    <p class="text-center text-muted mb-4">Присоединяйтесь к нашему студенческому сообществу</p>
+    
     <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">
       <p *ngFor="let msg of errorMsg">{{ msg }}</p>
     </div>
-    <div class="mb-3">
-      <label for="firstname" class="form-label">Имя</label>
-      <input [(ngModel)]="registerRequest.firstname" type="text" class="form-control" id="firstname" placeholder="Имя">
-    </div>
-    <div class="mb-3">
-      <label for="lastname" class="form-label">Фамилия</label>
-      <input [(ngModel)]="registerRequest.lastname" type="text" class="form-control" id="lastname" placeholder="Фамилия">
-    </div>
-    <div class="mb-3">
-      <label for="login" class="form-label">Электронная почта</label>
-      <input [(ngModel)]="registerRequest.email" type="email" class="form-control" id="login" placeholder="name@example.com">
-    </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Пароль</label>
-      <input [(ngModel)]="registerRequest.password" type="password" class="form-control" id="password" placeholder="Пароль">
-    </div>
-    <div class="d-flex justify-content-between mb-3 flex-column flex-sm-row">
-      <button (click)="register()" type="button" class="custom-register-button btn-outline-custom-pink button-custom-border-radius mb-2 mb-sm-0">
-        <em class="custom-font">&nbsp;Зарегистрироваться</em>
-      </button>
-      <style>
-        .btn-link {
-          text-decoration: none;
-        }
-      </style>
-      <div>
-        Уже есть аккаунт?&nbsp;
-        <button (click)="login()" type="button" class="btn btn-link">
-          <span class = "custom-pink-font">Войти</span>
-        </button>
+    
+    <!-- Personal Information -->
+    <div class="form-section">
+      <h4 class="section-title">Личная информация</h4>
+      
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstname" class="form-label">Имя</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <input [(ngModel)]="registerRequest.firstname" type="text" class="form-control" id="firstname" placeholder="Ваше имя">
+          </div>
+        </div>
+        
+        <div class="col-md-6 mb-3">
+          <label for="lastname" class="form-label">Фамилия</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <input [(ngModel)]="registerRequest.lastname" type="text" class="form-control" id="lastname" placeholder="Ваша фамилия">
+          </div>
+        </div>
       </div>
+      
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="dateOfBirth" class="form-label">Дата рождения</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+            <input [(ngModel)]="registerRequest.dateOfBirth" type="date" class="form-control" id="dateOfBirth">
+          </div>
+        </div>
+        
+        <div class="col-md-6 mb-3">
+          <label for="university" class="form-label">Университет</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-university"></i></span>
+            <input [(ngModel)]="registerRequest.university" type="text" class="form-control" id="university" placeholder="Ваш университет">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Contact Information -->
+    <div class="form-section">
+      <h4 class="section-title">Контактная информация</h4>
+      
+      <div class="mb-3">
+        <label for="login" class="form-label">Электронная почта</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+          <input [(ngModel)]="registerRequest.email" type="email" class="form-control" id="login" placeholder="name@example.com">
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Номер телефона</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-phone"></i></span>
+          <input [(ngModel)]="registerRequest.phoneNumber" type="tel" class="form-control" id="phoneNumber" placeholder="+7 (___) ___-__-__">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Security Information -->
+    <div class="form-section">
+      <h4 class="section-title">Безопасность</h4>
+      
+      <div class="mb-3">
+        <label for="password" class="form-label">Пароль</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-lock"></i></span>
+          <input [(ngModel)]="registerRequest.password" type="password" class="form-control" id="password" placeholder="Создайте пароль">
+        </div>
+        <small class="form-text">Пароль должен содержать не менее 8 символов</small>
+      </div>
+    </div>
+    
+    <div class="d-grid mb-4">
+      <button (click)="register()" type="button" class="btn custom-register-button mx-auto">
+        Создать аккаунт
+      </button>
+    </div>
+    
+    <div class="text-center">
+      <p class="mb-0">Уже есть аккаунт? 
+        <button (click)="login()" type="button" class="btn btn-link">
+          <span class="custom-green-font">Войти</span>
+        </button>
+      </p>
     </div>
   </div>
 </div>
+
+<style>
+  .navbar-brand .logo-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2ecc71;
+    letter-spacing: 1px;
+  }
+
+  .input-group-text {
+    background-color: #f8f9fa;
+    border-right: none;
+    color: #6c757d;
+  }
+  
+  .input-group .form-control {
+    border-left: none;
+  }
+  
+  .input-group-text i {
+    width: 16px;
+  }
+  
+  .custom-green-font {
+    color: #2ecc71;
+  }
+</style>

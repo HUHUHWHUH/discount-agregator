@@ -1,12 +1,25 @@
-                                                                                           /* Общие стили для формы */
+// Variables
+$primary-color: #2ecc71;
+$primary-dark: #27ae60;
+$primary-light: #a8e6cf;
+$text-color: #333;
+$text-secondary: #666;
+
+/* Общие стили для формы */
 .login-container {
   width: 80%; /* Ширина формы 80% экрана */
   max-width: 600px; /* Максимальная ширина на больших экранах */
   margin: auto; /* Центровка по горизонтали */
-  padding: 40px; /* Внутренние отступы */
+  padding: 35px; /* Внутренние отступы */
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Центрирование формы */
@@ -16,26 +29,150 @@
   align-items: center;
   min-height: 100vh; /* Центрирование по вертикали */
   padding: 20px; /* Отступы для мобильных устройств */
-  background-color: #f8f9fa; /* Фоновый цвет страницы */
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Стили для секций формы */
+.form-section {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  .section-title {
+    font-size: 1.2rem;
+    margin-bottom: 18px;
+    color: $text-color;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background-color: $primary-color;
+      margin-right: 10px;
+      border-radius: 2px;
+    }
+  }
+}
+
+/* Стили для полей ввода */
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  padding: 12px 15px;
+  transition: all 0.2s ease;
+  
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+    outline: none;
+  }
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: $text-secondary;
+}
+
+/* Стили для кнопки регистрации */
+.custom-register-button {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba($primary-color, 0.3);
+  width: 100%;
+  max-width: 250px;
+  
+  &:hover {
+    background-color: $primary-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba($primary-color, 0.4);
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba($primary-color, 0.3);
+  }
+  
+  .custom-font {
+    font-weight: 500;
+    font-style: normal;
+  }
+}
+
+/* Стили для ссылки входа */
+.btn-link {
+  text-decoration: none;
+  color: $primary-color;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: $primary-dark;
+    text-decoration: underline;
+  }
+}
+
+.custom-green-font {
+  font-family: Roboto, Arial, sans-serif;
+  font-weight: 500;
+  color: $primary-color;
 }
 
 /* Адаптивные стили для мобильных устройств */
 @media (max-width: 768px) {
   .login-container {
-    padding: 20px; /* Уменьшенные отступы */
-    width: 90%; /* Ширина формы на маленьких экранах */
+    padding: 25px;
+    width: 90%;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  .custom-register-button {
+    width: 100%;
+    max-width: 100%;
   }
 }
 
-.custom-font {
-  font-family: Roboto, Arial, sans-serif;
-  font-weight: 100;
-  font-style: normal;
+/* Small helper text */
+.form-text {
+  font-size: 12px;
+  color: $text-secondary;
 }
 
-.custom-pink-font {
-  font-family: Roboto, Arial, sans-serif;
-  font-weight: 100;
-  font-style: normal;
-  color: #9638ff;
+/* Page title styling */
+h3 {
+  color: $text-color;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.text-muted {
+  color: $text-secondary !important;
+}
+
+/* Error message styling */
+.alert-danger {
+  background-color: #fff5f5;
+  color: #d63031;
+  border-color: #ffd8d8;
+  border-radius: 8px;
+  padding: 12px 15px;
 }

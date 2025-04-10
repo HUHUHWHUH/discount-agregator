@@ -1,0 +1,129 @@
+<div class="main-page">
+  <!-- Navigation Panel -->
+  <div class="nav-panel">
+    <div class="container">
+      <div class="nav-content">
+        <div class="nav-brand">FIJI</div>
+        <div class="nav-links">
+          <a class="nav-link" href="#features">Преимущества</a>
+          <a class="nav-link" href="#partnership">Партнерство</a>
+          <a class="nav-link" [routerLink]="['/discounts']">Скидки</a>
+          <ng-container *ngIf="isLoggedIn; else loginButton">
+            <a class="nav-link nav-profile" [routerLink]="['/profile']">
+              <i class="fas fa-user-circle"></i>
+              Профиль
+            </a>
+          </ng-container>
+          <ng-template #loginButton>
+            <a class="btn btn-primary" [routerLink]="['/auth/login']">Войти</a>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-12 text-center">
+          <h1 class="hero-title">Получи студенческие скидки с FIJI</h1>
+          <p class="hero-subtitle">Эксклюзивные скидки и предложения от любимых брендов.</p>
+          <a *ngIf="!isLoggedIn" class="btn btn-light" [routerLink]="['/auth/register']">Начать</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <h2 class="text-center section-title">Почему FIJI?</h2>
+      <div class="row g-4 mt-3">
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-tags"></i>
+            </div>
+            <h3 class="feature-title">Эксклюзивные скидки</h3>
+            <p class="feature-description">Доступ к сотням студенческих скидок от известных брендов и местных предприятий.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3 class="feature-title">Просто использовать</h3>
+            <p class="feature-description">Простой процесс верификации и удобная платформа для поиска и использования скидок.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-university"></i>
+            </div>
+            <h3 class="feature-title">Подтвержденный статус</h3>
+            <p class="feature-description">Одноразовая верификация подтверждает ваш студенческий статус для всех партнеров.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+          <h2 class="cta-title">Готовы экономить?</h2>
+          <p class="cta-text">Присоединяйтесь к тысячам студентов, которые уже пользуются эксклюзивными скидками.</p>
+          <a *ngIf="!isLoggedIn" class="btn btn-lg" [routerLink]="['/auth/register']">Зарегистрироваться</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnership Section -->
+  <section id="partnership" class="partnership-section">
+    <div class="container">
+      <h2 class="text-center section-title">Партнерство с нами</h2>
+      <div class="row mt-5">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="partnership-card">
+            <p class="partnership-description text-center mb-4">
+              Заинтересованы в предоставлении скидок студентам через нашу платформу? Заполните форму ниже, и наша команда свяжется с вами.
+            </p>
+            <form [formGroup]="partnershipForm" (ngSubmit)="onSubmitPartnership()">
+              <div class="row g-3">
+                <div class="col-md-6 form-group">
+                  <label for="companyName">Название компании</label>
+                  <input type="text" id="companyName" class="form-control" formControlName="companyName">
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="contactName">Контактное лицо</label>
+                  <input type="text" id="contactName" class="form-control" formControlName="contactName">
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" class="form-control" formControlName="email">
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="phone">Телефон</label>
+                  <input type="tel" id="phone" class="form-control" formControlName="phone">
+                </div>
+                <div class="col-12 form-group">
+                  <label for="message">Сообщение</label>
+                  <textarea id="message" class="form-control" rows="3" formControlName="message"></textarea>
+                </div>
+                <div class="col-12 text-center mt-4">
+                  <button type="submit" class="btn btn-primary" [disabled]="partnershipForm.invalid">Отправить</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div> 

@@ -1,156 +1,359 @@
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  background: #ffffff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+@import '../../../../../scss/abstracts/variables';
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
+.profile-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding-bottom: 3rem;
 
-.purple-button {
-  background-color: #f5f0ff; /* Светлый фиолетовый фон */
-  color: #9638ff; /* Тёмно-фиолетовый текст */
-  border: 2px solid #9638ff; /* Тёмно-фиолетовая рамка */
-  border-radius: 8px; /* Закруглённые углы */
-  padding: 10px 20px; /* Отступы внутри кнопки */
-  font-family: Arial, sans-serif; /* Шрифт */
-  font-size: 16px; /* Размер шрифта */
-  font-weight: bold; /* Жирное начертание */
-  cursor: pointer; /* Изменение курсора на указатель */
-  text-transform: uppercase; /* Заглавные буквы */
-  transition: all 0.3s ease; /* Плавное изменение при наведении */
-}
+  // Navigation Header
+  .nav-header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1rem 0;
+    margin-bottom: 2rem;
 
-.purple-button:hover {
-  background-color: #e1bee7; /* Светло-фиолетовый фон при наведении */
-  border-color: #6a1b9a; /* Тёмно-фиолетовая рамка при наведении */
-  color: #6a1b9a; /* Тёмно-фиолетовый текст при наведении */
-}
+    .container {
+      max-width: 900px;
+    }
 
-.header .profile-picture {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #ffeeba;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  color: #ffc107;
-}
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.header .user-info {
-  margin-left: 20px;
-}
+    .nav-brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $primary-green-dark;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
 
-.header .user-info h1 {
-  font-size: 24px;
-  color: #343a40;
-}
+    .back-button {
+      color: #6c757d;
+      font-weight: 500;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s ease;
 
-.header .user-info .user-id {
-  font-size: 14px;
-  color: #6c757d;
-}
+      &:hover {
+        color: $primary-green;
+      }
 
-.header .edit-button {
-  background-color: #eaf4ff;
-  border: 1px solid #007bff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  color: #007bff;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.section {
-  margin-bottom: 20px;
-}
-
-.section h2 {
-  font-size: 18px;
-  color: #495057;
-  margin-bottom: 10px;
-}
-
-.section .info {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.section .info-item {
-  flex: 1 1 calc(50% - 10px);
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #495057;
-}
-
-.section .info-item span {
-  font-weight: bold;
-}
-
-.contacts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.contact-card {
-  flex: 1 1 calc(50% - 10px);
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
-  gap: 10px;
-}
-
-.contact-card i {
-  font-size: 24px;
-  color: #6c757d;
-}
-
-.contact-card span {
-  font-size: 14px;
-  color: #495057;
-}
-
-.contact-card .status {
-  font-size: 12px;
-  color: #28a745;
-}
-
-@media (max-width: 768px) {
-  .header {
-    flex-wrap: wrap;
-    text-align: center;
+      i {
+        font-size: 0.9rem;
+      }
+    }
   }
 
-  .header .user-info {
-    margin-left: 0;
-    margin-top: 10px;
+  // Profile Card
+  .container {
+    max-width: 900px;
   }
 
-  .section .info-item {
-    flex: 1 1 100%;
+  .profile-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    margin-bottom: 2rem;
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    .profile-avatar {
+      .avatar-placeholder {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, $primary-green 0%, $primary-green-dark 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .profile-info {
+      flex: 1;
+
+      .profile-name {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .profile-status {
+        font-size: 0.95rem;
+        color: $primary-green;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: $primary-green;
+        }
+      }
+    }
+
+    .profile-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      @media (max-width: 768px) {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .action-button {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        i {
+          font-size: 1rem;
+        }
+      }
+
+      .edit-button {
+        background-color: #e8f4fe;
+        color: #0270d7;
+        border: 1px solid #d0e5f5;
+
+        &:hover {
+          background-color: #d0e5f5;
+        }
+      }
+
+      .qr-button {
+        background-color: #f0f0f0;
+        color: #333;
+        border: 1px solid #e0e0e0;
+
+        &:hover {
+          background-color: #e0e0e0;
+        }
+      }
+    }
   }
 
-  .contacts {
-    flex-direction: column;
+  // Profile Sections
+  .profile-sections {
+    .profile-section {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      margin-bottom: 2rem;
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #eee;
+
+        .section-icon {
+          font-size: 1.5rem;
+          color: $primary-green;
+        }
+
+        .section-title {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #333;
+          margin: 0;
+        }
+      }
+
+      .section-content {
+        padding: 1.5rem;
+      }
+    }
   }
 
-  .contact-card {
-    flex: 1 1 100%;
+  // Personal Information
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .info-label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .info-value {
+        font-size: 1.1rem;
+        color: #333;
+      }
+    }
+  }
+
+  // Contact Information
+  .contact-items {
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #f8f9fa;
+      border: 1px solid #eee;
+
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #e8f4fe;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0270d7;
+        font-size: 1.2rem;
+      }
+
+      .contact-details {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        .contact-label {
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: #6c757d;
+        }
+
+        .contact-value {
+          font-size: 1.1rem;
+          color: #333;
+          margin: 0.25rem 0;
+        }
+
+        .contact-badge {
+          display: inline-block;
+          font-size: 0.75rem;
+          font-weight: 600;
+          padding: 0.25rem 0.5rem;
+          border-radius: 4px;
+          margin-top: 0.25rem;
+          width: fit-content;
+
+          &.verified {
+            background-color: #e6f7ea;
+            color: #28a745;
+          }
+        }
+      }
+    }
+  }
+
+  // Student Card
+  .card-preview {
+    .student-card {
+      background: linear-gradient(135deg, $primary-green 0%, $primary-green-dark 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      color: white;
+      overflow: hidden;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.2) 0%,
+          rgba(255, 255, 255, 0) 70%
+        );
+        pointer-events: none;
+      }
+
+      .card-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-user {
+        margin-bottom: 1.5rem;
+
+        .card-username {
+          font-size: 1.25rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+        }
+
+        .card-email {
+          font-size: 0.9rem;
+          opacity: 0.8;
+        }
+      }
+
+      .card-footer {
+        display: flex;
+        justify-content: center;
+
+        .view-card-button {
+          background-color: rgba(255, 255, 255, 0.2);
+          color: white;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 8px;
+          padding: 0.75rem 1.25rem;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+          }
+        }
+      }
+    }
   }
 }

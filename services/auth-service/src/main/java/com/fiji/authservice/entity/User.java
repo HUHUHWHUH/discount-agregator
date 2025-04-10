@@ -52,6 +52,8 @@ public class User implements UserDetails, Principal {
     private String password;
     private boolean accountLocked;
     private boolean enabled;
+    private String university;
+    private String phoneNumber;
     @ManyToMany(fetch = EAGER)
     private List<Role> roles;
     //@OneToMany(mappedBy = "owner")

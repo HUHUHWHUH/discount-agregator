@@ -1,34 +1,75 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
   <div class="container-fluid">
-    <!-- Логотип -->
-    <a class="navbar-brand fs-4" href="javascript:void(0)">FIJY</a>
+    <a class="navbar-brand" href="javascript:void(0)">
+      <span class="logo-text">FIJI</span>
+    </a>
   </div>
 </nav>
+
 <div class="login-wrapper">
   <div class="container-fluid card login-container">
-    <h3 class="text-center">Login</h3>
-    <hr>
+    <h3 class="text-center">Добро пожаловать</h3>
+    <p class="text-center text-muted mb-4">Войдите в свой аккаунт</p>
+    
     <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">
       <p *ngFor="let msg of errorMsg">{{ msg }}</p>
     </div>
+    
     <div class="mb-3">
-      <label for="login" class="form-label">Email address</label>
-      <input [(ngModel)]="authRequest.email" type="email" class="form-control" id="login" placeholder="name@example.com">
-    </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input [(ngModel)]="authRequest.password" type="password" class="form-control" id="password" placeholder="Password">
-    </div>
-    <div class="d-flex justify-content-between mb-3 flex-column flex-sm-row">
-      <button (click)="login()" type="button" class="btn btn-primary mb-2 mb-sm-0">
-        <em class="custom-enter-button">&nbsp;Sign in</em>
-      </button>
-      <div class = "">
-        Don't have an account?&nbsp;
-        <button (click)="register()" type="button" class="btn btn-link">
-          Register
-        </button>
+      <label for="login" class="form-label">Электронная почта</label>
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <input [(ngModel)]="authRequest.email" type="email" class="form-control" id="login" placeholder="name@example.com">
       </div>
+    </div>
+    
+    <div class="mb-4">
+      <label for="password" class="form-label">Пароль</label>
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="fas fa-lock"></i>
+        </span>
+        <input [(ngModel)]="authRequest.password" type="password" class="form-control" id="password" placeholder="Ваш пароль">
+      </div>
+    </div>
+    
+    <div class="d-grid mb-4">
+      <button (click)="login()" type="button" class="btn btn-primary">
+        Войти
+      </button>
+    </div>
+    
+    <div class="text-center">
+      <p class="mb-0">Нет аккаунта? 
+        <button (click)="register()" type="button" class="btn btn-link">
+          Зарегистрироваться
+        </button>
+      </p>
     </div>
   </div>
 </div>
+
+<style>
+  .navbar-brand .logo-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2ecc71;
+    letter-spacing: 1px;
+  }
+
+  .input-group-text {
+    background-color: #f8f9fa;
+    border-right: none;
+    color: #6c757d;
+  }
+  
+  .input-group .form-control {
+    border-left: none;
+  }
+  
+  .input-group-text i {
+    width: 16px;
+  }
+</style>

@@ -4,6 +4,12 @@ import { Observable } from 'rxjs';
 import {User} from '../models/user';
 import {UserUpdateRequest} from '../models/user-update-request';
 
+// Interface for password update request
+export interface PasswordUpdateRequest {
+  password: string;
+  currentPassword: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -54,5 +60,14 @@ export class UserService {
   updateUser(updateRequest: UserUpdateRequest): Observable<string> {
     const headers = this.createAuthHeaders();
     return this.http.put<string>(`${this.apiUrl}/update`, updateRequest, { headers });
+  }
+  
+  /**
+   * Update only the user's password
+   * @param passwordUpdate Object containing the new password and current password
+   */
+  updatePassword(passwordUpdate: PasswordUpdateRequest): Observable<string> {
+    const headers = this.createAuthHeaders();
+    return this.http.put<string>(`${this.apiUrl}/update-password`, passwordUpdate, { headers });
   }
 }

@@ -5,6 +5,8 @@ import {ProfileComponent} from './modules/profile/pages/profile/profile.componen
 import {EditProfileComponent} from './modules/profile/pages/edit-profile/edit-profile.component';
 import {QrComponent} from './modules/qr/pages/qr/qr.component';
 import {UserInformationComponent} from './modules/qr/pages/user-information/user-information.component';
+import { MainPageComponent } from './modules/main-page/main-page.component';
+import { DiscountsComponent } from './modules/discounts/discounts.component';
 
 export const routes: Routes = [
   {
@@ -22,8 +24,11 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    //component: HomeComponent
-    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+    component: MainPageComponent
+  },
+  {
+    path: 'discounts',
+    component: DiscountsComponent
   },
   {
     path: 'profile',

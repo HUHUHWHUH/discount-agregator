@@ -10,5 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface DiscountRepository extends JpaRepository<Discount, Long> {
     Page<Discount> findByActiveTrue(Pageable pageable);
     Page<Discount> findByCompanyAndActive(String company, boolean active, Pageable pageable);
+    Page<Discount> findByNameContainingIgnoreCase(String name, Pageable pageable);
 }
 

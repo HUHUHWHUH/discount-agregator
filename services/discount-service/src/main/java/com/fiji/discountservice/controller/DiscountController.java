@@ -67,4 +67,13 @@ public class DiscountController {
         discountService.uploadDiscountCoverPicture(file, discountId);
         return ResponseEntity.accepted().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<PageResponse<DiscountResponse>> searchDiscountsByName(
+            @RequestParam(name = "name", required = true) String name,
+            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) int size
+    ) {
+        return ResponseEntity.ok(discountService.searchDiscountsByName(name, page, size));
+    }
 }
